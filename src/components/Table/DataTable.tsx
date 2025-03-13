@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import { ColDef, RowDragEndEvent, SortChangedEvent, ModuleRegistry, ClientSideRowModelModule } from 'ag-grid-community';
+import { ColDef, RowDragEndEvent, SortChangedEvent, ModuleRegistry} from 'ag-grid-community';
 import { DataTableProps } from '@/types/index';
 import { GripVerticalIcon } from 'lucide-react';
+import { AllEnterpriseModule, LicenseManager } from "ag-grid-enterprise";
 
-ModuleRegistry.registerModules([ClientSideRowModelModule]);
+ModuleRegistry.registerModules([
+  AllEnterpriseModule
+]);
+const VITE_APP_AG_GRID_LICENSE_KEY = import.meta.env.VITE_APP_AG_GRID_LICENSE_KEY;
+LicenseManager.setLicenseKey(VITE_APP_AG_GRID_LICENSE_KEY);
 
 const DataTable = ({
   tableKey,
@@ -14,7 +19,7 @@ const DataTable = ({
   onRowDataChange,
   onRowDragEnd,
   showSerialNumber = true,
-  actionColumn
+  actionColumn,
 }: DataTableProps) => {
   const [localRowData, setLocalRowData] = useState(rowData);
   const [columnDefs, setColumnDefs] = useState<ColDef[]>([]);
@@ -134,6 +139,10 @@ const DataTable = ({
           rowData={addSerialNumbers(localRowData)}
           domLayout="autoHeight"
           rowDragManaged={true}
+          pagination={true}
+          paginationPageSize={20}
+          cacheBlockSize={20}
+          paginationPageSizeSelector={[20,50,100]}
           animateRows={true}
           suppressMoveWhenRowDragging={false}
           suppressDragLeaveHidesColumns={true}

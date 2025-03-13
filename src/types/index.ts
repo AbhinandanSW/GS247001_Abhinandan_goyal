@@ -21,4 +21,13 @@ export interface DataTableProps {
     width?: number;
     cellRenderer?: React.ComponentType<any>;
   };
+  isSSRM?: boolean;
+  onGridReady?: (params: any) => void;
+  dataSource?: any;
+}
+
+export interface SSRMDataTableProps {
+
+  columns: ColDef[];
+  dataSource: any;
 }
