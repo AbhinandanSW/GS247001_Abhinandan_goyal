@@ -132,20 +132,20 @@ const Store = () => {
   const updateRowOrder = async (updatedData: any[]) => {
     try {
       // Prepare data for update - only updating row_order
-      const updates = updatedData.map(row => ({
-        store_id: row.store_id,
-        row_order: row.row_order
-      }));
+      // const updates = updatedData.map(row => ({
+      //   store_id: row.store_id,
+      //   row_order: row.row_order
+      // }));
       
-      // Update in database
-      const { error } = await supabase
-        .from('stores')
-        .upsert(updates, { onConflict: ['store_id'] });
+      // // Update in database
+      // const { error } = await supabase
+      //   .from('stores')
+      //   .upsert(updates, { onConflict: ['store_id'] });
 
-      if (error) {
-        console.error('Error updating row order:', error);
-        return;
-      }
+      // if (error) {
+      //   console.error('Error updating row order:', error);
+      //   return;
+      // }
       
       // Update local state
       setRowData(updatedData);

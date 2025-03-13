@@ -1,4 +1,4 @@
-import { ColDef, RowDragEndEvent, SortChangedEvent } from 'ag-grid-community';
+import { ColDef, RowDragEndEvent } from 'ag-grid-community';
 
 export interface AuthState {
   authenticated: boolean;

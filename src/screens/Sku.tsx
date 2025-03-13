@@ -133,20 +133,20 @@ const Sku = () => {
   const updateRowOrder = async (updatedData: any[]) => {
     try {
       // Prepare data for update - only updating row_order
-      const updates = updatedData.map(row => ({
-        sku_id: row.sku_id,
-        row_order: row.row_order
-      }));
+      // const updates = updatedData.map(row => ({
+      //   sku_id: row.sku_id,
+      //   row_order: row.row_order
+      // }));
       
-      // Update in database
-      const { error } = await supabase
-        .from('skus')
-        .upsert(updates, { onConflict: ['sku_id'] });
+      // // Update in database
+      // const { error } = await supabase
+      //   .from('skus')
+      //   .upsert(updates, { onConflict: ['sku_id'] });
 
-      if (error) {
-        console.error('Error updating row order:', error);
-        return;
-      }
+      // if (error) {
+      //   console.error('Error updating row order:', error);
+      //   return;
+      // }
       
       // Update local state
       setRowData(updatedData);
