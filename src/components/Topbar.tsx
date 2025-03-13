@@ -4,14 +4,14 @@ import useAuthStore  from '../store/authStore'; // Assuming the useAuthStore is 
 
 const Topbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { logout } = useAuthStore();
+  const { authenticated, logout } = useAuthStore();
 
   const handleLogout = () => {
     logout();
   };
 
   return (
-    <div className="bg-gray-800 text-white p-4 shadow-md">
+    <div className=" p-4 shadow-md">
       <div className="flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -21,9 +21,8 @@ const Topbar: React.FC = () => {
           <span className="text-xl font-semibold">Data Viewer</span>
         </div>
         {/* User Icon and Menu */}
-        <div className="relative">
+        {authenticated && <div className="relative">
           <button
-            className="text-white"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <FiUser className="text-xl" />
@@ -40,7 +39,7 @@ const Topbar: React.FC = () => {
               </button>
             </div>
           )}
-        </div>
+        </div>}
       </div>
     </div>
   );

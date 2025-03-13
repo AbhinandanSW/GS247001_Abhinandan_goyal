@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="w-64 bg-gray-800 text-white p-6">
+    <div className="w-64 p-6">
       <ul className="space-y-4">
         <li>
           <Link to="/store" className="hover:text-gray-400">
